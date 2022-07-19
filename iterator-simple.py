@@ -10,9 +10,9 @@ class TypingIterator:
         try:
             # we don't do class based checks here,
             # we prefer duck typing...
-            len(my_container)  # check length function
-            my_container[0]  # check element zero
-            my_container[-1]  # check last element
+            len(my_container)  # check length function.
+            my_container[0]  # check element zero.
+            my_container[-1]  # check last element.
         except:
             print(
                 (
@@ -23,13 +23,13 @@ class TypingIterator:
             )
             sys.exit(1)
         else:
-            self.index = 0  # always start at 0
+            self.index = 0  # always start at 0.
             self.my_container = my_container
 
     def __iter__(self):
         """
         we already have the __next__ method,
-        so return 'self' here.
+        so we return 'self' (same object) here.
         """
         return self
 
@@ -38,11 +38,10 @@ class TypingIterator:
         __next__ method contains the whole iterator logic.
         you could do any resumable calculation here.
         """
-
+        # protocol requires: last element => StopIteration.
         if self.index + 1 > len(self.my_container):
-            # last element => StopIteration
             raise StopIteration
-
+        # here are the customized iteration values!
         value = (
             type(self.my_container[self.index]).__name__,
             self.my_container[self.index],
@@ -52,12 +51,12 @@ class TypingIterator:
         return value
 
 
-# for-in loop over our TypedIterator
+# for-in loop over our TypedIterator.
 print("\nOur custom typed iterator:")
 for element in TypingIterator([{2, 8}, 9, "8"]):
     print(repr(element))
 
-# for-in loop over plain vanilla standard iterator
+# for-in loop over plain vanilla standard iterator.
 print("\nStandard iterator:")
 for element in [{2, 8}, 9, "8"]:
     print(repr(element))
