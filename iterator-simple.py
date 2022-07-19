@@ -16,7 +16,7 @@ class TypingIterator:
         except:
             print(
                 (
-                    f"Error: No length or index sequence defined: "
+                    f"Error: No length/index defined: "
                     f"{type(my_container).__name__} "
                     f"{str(my_container)}!\n"
                 )
@@ -28,7 +28,8 @@ class TypingIterator:
 
     def __iter__(self):
         """
-        we already have the __next__ method, so return 'self' here.
+        we already have the __next__ method,
+        so return 'self' here.
         """
         return self
 
@@ -38,7 +39,8 @@ class TypingIterator:
         you could do any resumable calculation here.
         """
 
-        if self.index + 1 > len(self.my_container):  # last element => StopIteration
+        if self.index + 1 > len(self.my_container):
+            # last element => StopIteration
             raise StopIteration
 
         value = (
