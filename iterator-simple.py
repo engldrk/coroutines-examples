@@ -1,30 +1,30 @@
-import sys
+#
+# simple iterator class example:
+#
+# (1) __init__ method sets start values.
+# (2) __next__ method is customized to run our
+#     "special" typed iteration.
+# (3) __iter__ method returns same object, because it
+#     already is iterable via __next__. Method __iter__ will
+#     be called by for-in loop automatically. Otherwise
+#     object would not be iterable and we get an error.
+# (4) End of iteration raises StopIteration.
+#
 
 
 class TypingIterator:
     def __init__(self, my_container):
         """
-        Example works for sequencial container objects
-        with length and index from zero on defined.
+        Example works for sequencial container objects.
+
+        Pre-condition: Length and index of my_container
+        must be defined from [0] to [-1].
+
+        Exception handling is skipped for brevity!
         """
-        try:
-            # we don't do class based checks here,
-            # we prefer duck typing...
-            len(my_container)  # check length function.
-            my_container[0]  # check element zero.
-            my_container[-1]  # check last element.
-        except:
-            print(
-                (
-                    f"Error: No length/index defined: "
-                    f"{type(my_container).__name__} "
-                    f"{str(my_container)}!\n"
-                )
-            )
-            sys.exit(1)
-        else:
-            self.index = 0  # always start at 0.
-            self.my_container = my_container
+
+        self.index = 0
+        self.my_container = my_container
 
     def __iter__(self):
         """
@@ -51,12 +51,16 @@ class TypingIterator:
         return value
 
 
-# for-in loop over our TypedIterator.
-print("\nOur custom typed iterator:")
-for element in TypingIterator([{2, 8}, 9, "8"]):
-    print(repr(element))
+if __name__ == "__main__":
 
-# for-in loop over plain vanilla standard iterator.
-print("\nStandard iterator:")
-for element in [{2, 8}, 9, "8"]:
-    print(repr(element))
+    container_to_be_iterated = [{2, 8}, 9, "8"]
+
+    # for-in loop over our simple iterator TypedIterator.
+    print("\nOur custom typed iterator:")
+    for element in TypingIterator(container_to_be_iterated):
+        print(repr(element))
+
+    # for-in loop over plain vanilla standard iterator.
+    print("\nStandard iterator:")
+    for element in container_to_be_iterated:
+        print(repr(element))
