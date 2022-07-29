@@ -23,7 +23,7 @@ def producer(x):
     print(x.send(None))
     num = 1
     while num <= 7:
-        print(f"Producer: I created {num}")
+        print(f"Producer: Created {num}")
         r = x.send(num)
         print(f"Producer: My consumer returned {r}")
         num = num + 1
