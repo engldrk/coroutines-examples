@@ -22,7 +22,7 @@ def producer(x):
     print("Producer: I started my coroutine")
     print(x.send(None))
     num = 1
-    while num <= 7:
+    while num <= 4:
         print(f"Producer: Created {num}")
         r = x.send(num)
         print(f"Producer: My consumer returned {r}")
