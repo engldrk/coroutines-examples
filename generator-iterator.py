@@ -18,7 +18,7 @@
 #
 
 
-def typing_iterator_generator(my_container):
+def typing_iter_generator(my_container):
     """
     Example works for sequencial container objects.
     Pre-condition: For-in loop must be runable on
@@ -31,9 +31,9 @@ def typing_iterator_generator(my_container):
 
 if __name__ == "__main__":
 
-    container_to_be_iterated = [{2, 8}, 9, "8"]
+    cont_to_be_iterated = [{2, 8}, 9, "8"]
 
     # for-in loop over our generator typing_iterator.
     print("\nOur 'typing' generator/iterator:")
-    for element in typing_iterator_generator(container_to_be_iterated):
+    for element in typing_iter_generator(cont_to_be_iterated):
         print(repr(element))
